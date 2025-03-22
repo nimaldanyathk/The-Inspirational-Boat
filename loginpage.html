@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Learning | Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        body {
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('login page wallpaper black hole.jpg') no-repeat center center;
+            background-size: cover;
+            filter: brightness(0.4);
+            z-index: -1;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .container {
+            width: 400px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            background-color: rgba(15, 23, 42, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(60, 130, 214, 0.3), 
+                        0 0 40px rgba(60, 130, 214, 0.2), 
+                        0 0 60px rgba(60, 130, 214, 0.1);
+            padding: 40px;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeIn 1s forwards 0.5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .logo span {
+            color: #64b5f6;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #aaa;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #ddd;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #64b5f6;
+            box-shadow: 0 0 0 2px rgba(100, 181, 246, 0.2);
+        }
+
+        .form-group i {
+            position: absolute;
+            right: 15px;
+            top: 38px;
+            color: #64b5f6;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: #64b5f6;
+            font-size: 13px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #90caf9;
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #1e88e5, #64b5f6);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #1976d2, #42a5f5);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn:after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.3);
+            top: -150px;
+            left: -50px;
+            transform: rotate(35deg);
+            transition: all 0.5s;
+        }
+
+        .btn:hover:after {
+            left: 120%;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .divider hr {
+            flex: 1;
+            border: none;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .divider span {
+            padding: 0 15px;
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(30, 41, 59, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(100, 181, 246, 0.4);
+        }
+
+        .signup {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .signup a {
+            color: #64b5f6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .signup a:hover {
+            color: #90caf9;
+            text-decoration: underline;
+        }
+
+        .orbital-ring {
+            position: absolute;
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            border-radius: 50%;
+            animation: rotate 60s linear infinite;
+        }
+
+        .ring1 {
+            width: 600px;
+            height: 600px;
+            border-color: rgba(100, 181, 246, 0.1);
+        }
+
+        .ring2 {
+            width: 800px;
+            height: 800px;
+            border-color: rgba(100, 181, 246, 0.05);
+            animation-direction: reverse;
+        }
+
+        .ring3 {
+            width: 1000px;
+            height: 1000px;
+            border-color: rgba(100, 181, 246, 0.03);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #64b5f6, #1e88e5);
+            box-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
+        }
+
+        .planet1 {
+            width: 15px;
+            height: 15px;
+            left: calc(50% + 300px);
+            top: calc(50% - 7.5px);
+            animation: orbit1 30s linear infinite;
+        }
+
+        .planet2 {
+            width: 10px;
+            height: 10px;
+            left: calc(50% + 400px);
+            top: calc(50% - 5px);
+            background: radial-gradient(circle at 30% 30%, #ff9800, #f57c00);
+            animation: orbit2 45s linear infinite;
+        }
+
+        .planet3 {
+            width: 20px;
+            height: 20px;
+            left: calc(50% + 500px);
+            top: calc(50% - 10px);
+            background: radial-gradient(circle at 30% 30%, #8bc34a, #689f38);
+            animation: orbit3 60s linear infinite reverse;
+        }
+
+        @keyframes orbit1 {
+            from { transform: rotate(0deg) translateX(-300px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(-300px) rotate(-360deg); }
+        }
+
+        @keyframes orbit2 {
+            from { transform: rotate(0deg) translateX(-400px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(-400px) rotate(-360deg); }
+        }
+
+        @keyframes orbit3 {
+            from { transform: rotate(0deg) translateX(-500px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(-500px) rotate(-360deg); }
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+        }
+
+        .loading.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: hsl(42, 58%, 31%);
+            animation: spin 1s linear infinite;
+        }
+
+        .loader:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #1e88e5;
+            animation: spin 2s linear infinite;
+        }
+
+        .loader:after {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #90caf9;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error Message Animation */
+        .error {
+            color: #ff5252;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+            40%, 60% { transform: translate3d(3px, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Background Image -->
+    <div class="background"></div>
+    
+    <!-- Stars -->
+    <div class="stars"></div>
+    
+    <!-- Orbital Rings -->
+    <div class="orbital-ring ring1"></div>
+    <div class="orbital-ring ring2"></div>
+    <div class="orbital-ring ring3"></div>
+    
+    <!-- Planets -->
+    <div class="planet planet1"></div>
+    <div class="planet planet2"></div>
+    <div class="planet planet3"></div>
+    
+    <!-- Login Container -->
+    <div class="container">
+        <div class="logo">
+            <h1>COSMIC<span>LEARNING</span></h1>
+            <p class="tagline">Explore the Universe of Knowledge</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username or Email</label>
+                <input type="text" id="username" placeholder="Enter your username or email">
+                <i class="fas fa-user"></i>
+                <div class="error" id="usernameError">Please enter a valid username or email</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <i class="fas fa-lock"></i>
+                <div class="error" id="passwordError">Password must be at least 6 characters</div>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="#">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn">LOGIN</button>
+            
+            <div class="divider">
+                <hr><span>OR</span><hr>
+            </div>
+            
+            <div class="social-login">
+                <div class="social-btn google">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#DB4437">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                </div>
+                <div class="social-btn facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+                        <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/>
+                    </svg>
+                </div>
+                <div class="social-btn twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#1DA1F2">
+                        <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="signup">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        // Create stars
+        document.addEventListener('DOMContentLoaded', function() {
+            const starsContainer = document.querySelector('.stars');
+            const starsCount = 100;
+            
+            for(let i = 0; i < starsCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size between 1-3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+            
+            // Hide loading screen after 2 seconds
+            setTimeout(() => {
+                document.querySelector('.loading').classList.add('hide');
+            }, 2000);
+        });
+
+        // Form validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Username validation
+            if(username.trim() === '') {
+                document.getElementById('usernameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('usernameError').style.display = 'none';
+            }
+            
+            // Password validation
+            if(password.length < 6) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('passwordError').style.display = 'none';
+            }
+            
+            // If valid, simulate login
+            if(isValid) {
+                // Show loading spinner
+                document.querySelector('.loading').classList.remove('hide');
+                
+                // Simulate API call delay
+                setTimeout(function() {
+                    // Redirect to dashboard (in a real app)
+                    // window.location.href = 'dashboard.html';
+                    
+                    // For demo, just hide the loader and show an alert
+                    document.querySelector('.loading').classList.add('hide');
+                    alert('Login successful! Welcome to Cosmic Learning.');
+                }, 2000);
+            }
+        });
+
+        // Interactive background effect
+        document.addEventListener('mousemove', function(e) {
+            const container = document.querySelector('.container');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            // Subtle movement of the login container
+            container.style.transform = `translateY(${y * 10 - 5}px) translateX(${x * 10 - 5}px)`;
+            
+            // Dynamic shadow based on mouse position
+            container.style.boxShadow = `
+                ${x * 20 - 10}px ${y * 20 - 10}px 20px rgba(60, 130, 214, 0.3),
+                ${x * 30 - 15}px ${y * 30 - 15}px 40px rgba(60, 130, 214, 0.2),
+                ${x * 40 - 20}px ${y * 40 - 20}px 60px rgba(60, 130, 214, 0.1)
+            `;
+        });
+
+        // Password visibility toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordField = document.getElementById('password');
+            const passwordIcon = document.querySelector('.form-group:nth-child(2) i');
+            
+            passwordIcon.addEventListener('click', function() {
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                    passwordIcon.classList.remove('fa-lock');
+                    passwordIcon.classList.add('fa-eye');
+                } else {
+                    passwordField.type = "password";
+                    passwordIcon.classList.remove('fa-eye');
+                    passwordIcon.classList.add('fa-lock');
+                }
+            });
+        });
+
+        // Particle effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'absolute';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.zIndex = '-1';
+            document.body.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Particles array
+            const particles = [];
+            const particleCount = 50;
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 1,
+                    color: `rgba(100, 181, 246, ${Math.random() * 0.5 + 0.1})`,
+                    speedX: Math.random() * 0.5 - 0.25,
+                    speedY: Math.random() * 0.5 - 0.25
+                });
+            }
+            
+            // Draw particles
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const p = particles[i];
+                    
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
+                    
+                    // Connect particles with lines if they're close enough
+                    for (let j = i + 1; j < particleCount; j++) {
+                        const p2 = particles[j];
+                        const distance = Math.sqrt(Math.pow(p.x - p2.x, 2) + Math.pow(p.y - p2.y, 2));
+                        
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(100, 181, 246, ${0.2 * (1 - distance / 100)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p2.x, p2.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            // Update particle positions
+            function updateParticles() {
+                for (let i = 0; i < particleCount; i++) {
+                    const p = particles[i];
+                    
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    
+                    // Bounce off edges
+                    if (p.x < 0 || p.x > canvas.width) p.speedX = -p.speedX;
+                    if (p.y < 0 || p.y > canvas.height) p.speedY = -p.speedY;
+                }
+            }
+            
+            // Animation loop
+            function animate() {
+                drawParticles();
+                updateParticles();
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Resize canvas on window resize
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
+
+        // Input field focus effects
+        document.querySelectorAll('.form-group input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.previousElementSibling.style.color = '#64b5f6';
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.previousElementSibling.style.color = '#ddd';
+                }
+            });
+        });
+
+        // Button click effect
+        document.querySelector('.btn').addEventListener('mousedown', function() {
+            this.style.transform = 'scale(0.98)';
+        });
+        
+        document.querySelector('.btn').addEventListener('mouseup', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+
+        // Add more cosmic objects that appear occasionally
+        document.addEventListener('DOMContentLoaded', function() {
+            function createCosmicObject() {
+                const types = ['meteor', 'comet', 'satellite'];
+                const type = types[Math.floor(Math.random() * types.length)];
+                
+                const object = document.createElement('div');
+                object.style.position = 'absolute';
+                object.style.zIndex = '-1';
+                document.body.appendChild(object);
+                
+                const startX = window.innerWidth + 100;
+                const startY = Math.random() * window.innerHeight;
+                const endX = -100;
+                const endY = Math.random() * window.innerHeight;
+                
+                object.style.left = `${startX}px`;
+                object.style.top = `${startY}px`;
+                
+                if (type === 'meteor') {
+                    object.style.width = '2px';
+                    object.style.height = '2px';
+                    object.style.backgroundColor = '#fff';
+                    object.style.boxShadow = '0 0 20px 2px rgba(255,255,255,0.5)';
+                    object.style.borderRadius = '50%';
+                    
+                    // Meteor trail
+                    const trail = document.createElement('div');
+                    trail.style.position = 'absolute';
+                    trail.style.width = '100px';
+                    trail.style.height = '1px';
+                    trail.style.backgroundImage = 'linear-gradient(to left, rgba(255,255,255,0.8), transparent)';
+                    trail.style.transformOrigin = 'left center';
+                    trail.style.transform = 'rotate(30deg)';
+                    object.appendChild(trail);
+                    
+                    // Animate meteor
+                    const duration = Math.random() * 2000 + 1000;
+                    object.animate(
+                        [
+                            { left: `${startX}px`, top: `${startY}px` },
+                            { left: `${endX}px`, top: `${endY}px` }
+                        ],
+                        {
+                            duration: duration,
+                            easing: 'linear',
+                            fill: 'forwards'
+                        }
+                    ).onfinish = () => object.remove();
+                    
+                } else if (type === 'comet') {
+                    object.style.width = '4px';
+                    object.style.height = '4px';
+                    object.style.backgroundColor = '#64b5f6';
+                    object.style.boxShadow = '0 0 20px 5px rgba(100, 181, 246, 0.8)';
+                    object.style.borderRadius = '50%';
+                    
+                    // Comet tail
+                    const tail = document.createElement('div');
+                    tail.style.position = 'absolute';
+                    tail.style.width = '150px';
+                    tail.style.height = '3px';
+                    tail.style.backgroundImage = 'linear-gradient(to left, rgba(100, 181, 246, 0.8), transparent)';
+                    tail.style.transformOrigin = 'left center';
+                    tail.style.transform = 'rotate(20deg)';
+                    object.appendChild(tail);
+                    
+                    // Animate comet
+                    const duration = Math.random() * 3000 + 2000;
+                    object.animate(
+                        [
+                            { left: `${startX}px`, top: `${startY}px` },
+                            { left: `${endX}px`, top: `${endY}px` }
+                        ],
+                        {
+                            duration: duration,
+                            easing: 'linear',
+                            fill: 'forwards'
+                        }
+                    ).onfinish = () => object.remove();
+                    
+                } else if (type === 'satellite') {
+                    object.style.width = '6px';
+                    object.style.height = '3px';
+                    object.style.backgroundColor = '#ccc';
+                    object.style.boxShadow = '0 0 5px 1px rgba(255,255,255,0.5)';
+                    
+                    // Satellite antenna
+                    const antenna = document.createElement('div');
+                    antenna.style.position = 'absolute';
+                    antenna.style.width = '1px';
+                    antenna.style.height = '3px';
+                    antenna.style.backgroundColor = '#fff';
+                    antenna.style.top = '-3px';
+                    antenna.style.left = '2px';
+                    object.appendChild(antenna);
+                    
+                    // Animate satellite
+                    const duration = Math.random() * 10000 + 5000;
+                    object.animate(
+                        [
+                            { left: `${startX}px`, top: `${startY}px` },
+                            { left: `${endX}px`, top: `${startY}px` }
+                        ],
+                        {
+                            duration: duration,
+                            easing: 'linear',
+                            fill: 'forwards'
+                        }
+                    ).onfinish = () => object.remove();
+                }
+            }
+            
+            // Create a cosmic object every 5-10 seconds
+            setInterval(createCosmicObject, Math.random() * 5000 + 5000);
+            
+            // Create one immediately
+            createCosmicObject();
+        });
+    </script>
+</body>
+</html>

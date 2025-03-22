@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astro Games</title>
+    <style>
+        body {
+            background: radial-gradient(circle, #0a0a2a, #000);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 50px;
+        }
+        .game-link {
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: transform 0.5s ease-out, filter 0.5s ease-out;
+            will-change: transform, filter;
+        }
+        .game-link:hover {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 25px cyan);
+        }
+        img {
+            width: 200px;
+            height: auto;
+            border-radius: 15px;
+            transition: transform 0.8s ease-out, filter 0.8s ease-out;
+            will-change: transform, filter;
+        }
+        img:hover {
+            transform: rotateY(360deg) scale(1.2);
+            filter: drop-shadow(0 0 30px cyan);
+        }
+        .title {
+            margin-top: 10px;
+            font-size: 20px;
+            transition: color 0.4s ease-out, text-shadow 0.4s ease-out;
+            will-change: color, text-shadow;
+        }
+        .title:hover {
+            color: cyan;
+            text-shadow: 0 0 20px cyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="game-link">
+            <img src="astro_block.png" alt="Astro Game">
+            <div class="title">Astro Game</div>
+        </a>
+        <a href="blockbb.html" class="game-link">
+            <img src="block_break.png" alt="Astro Block Breaker">
+            <div class="title">Astro Block Breaker</div>
+        </a><br>
+        <a href="Interactive Space Games - The Inspirational Boat.html" class="more-games">More Games</a>
+
+    </div>
+
+</body>
+</html>

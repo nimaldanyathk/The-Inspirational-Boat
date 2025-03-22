@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Elements Demo</title>
+</head>
+<body>
+    <h1>Form Elements Demo</h1>
+    
+    <form id="demoForm" onsubmit="handleSubmit(event)">
+        <!-- Text input -->
+        <div>
+            <h2>Text Inputs</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        
+        <!-- Email input -->
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        
+        <!-- Password input -->
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+        
+        <!-- Number input -->
+        <div>
+            <h2>Number Input</h2>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" max="120" step="1">
+        </div>
+        
+        <!-- Date input -->
+        <div>
+            <h2>Date Input</h2>
+            <label for="birthdate">Birthdate:</label>
+            <input type="date" id="birthdate" name="birthdate">
+        </div>
+        
+        <!-- Time input -->
+        <div>
+            <label for="meeting-time">Meeting Time:</label>
+            <input type="time" id="meeting-time" name="meeting-time">
+        </div>
+        
+        <!-- File input -->
+        <div>
+            <h2>File Input</h2>
+            <label for="profile-picture">Profile Picture:</label>
+            <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
+        </div>
+        
+        <!-- Radio buttons -->
+        <div>
+            <h2>Radio Buttons</h2>
+            <p>Gender:</p>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+            
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+            
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+        </div>
+        
+        <!-- Checkboxes -->
+        <div>
+            <h2>Checkboxes</h2>
+            <p>Interests:</p>
+            <input type="checkbox" id="sports" name="interests" value="sports">
+            <label for="sports">Sports</label><br>
+            
+            <input type="checkbox" id="music" name="interests" value="music">
+            <label for="music">Music</label><br>
+            
+            <input type="checkbox" id="reading" name="interests" value="reading">
+            <label for="reading">Reading</label>
+        </div>
+        
+        <!-- Select dropdown -->
+        <div>
+            <h2>Select Dropdown</h2>
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="">Select a country</option>
+                <option value="usa">United States</option>
+                <option value="canada">Canada</option>
+                <option value="uk">United Kingdom</option>
+                <option value="australia">Australia</option>
+            </select>
+        </div>
+        
+        <!-- Multiple select -->
+        <div>
+            <h2>Multiple Select</h2>
+            <label for="languages">Languages:</label>
+            <select id="languages" name="languages" multiple>
+                <option value="english">English</option>
+                <option value="spanish">Spanish</option>
+                <option value="french">French</option>
+                <option value="german">German</option>
+                <option value="chinese">Chinese</option>
+            </select>
+            <small>(Hold Ctrl/Cmd to select multiple options)</small>
+        </div>
+        
+        <!-- Textarea -->
+        <div>
+            <h2>Textarea</h2>
+            <label for="bio">Bio:</label><br>
+            <textarea id="bio" name="bio" rows="4" cols="50" placeholder="Tell us about yourself"></textarea>
+        </div>
+        
+        <!-- Range slider -->
+        <div>
+            <h2>Range Slider</h2>
+            <label for="satisfaction">Satisfaction Level:</label>
+            <input type="range" id="satisfaction" name="satisfaction" min="0" max="10" step="1" value="5">
+            <span id="satisfaction-value">5</span>
+        </div>
+        
+        <!-- Color picker -->
+        <div>
+            <h2>Color Picker</h2>
+            <label for="favorite-color">Favorite Color:</label>
+            <input type="color" id="favorite-color" name="favorite-color" value="#ff0000">
+        </div>
+        
+        <!-- Hidden input -->
+        <div>
+            <h2>Hidden Input</h2>
+            <input type="hidden" id="user-id" name="user-id" value="12345">
+            <p>This form contains a hidden field with value: 12345</p>
+        </div>
+        
+        <!-- Datalist -->
+        <div>
+            <h2>Datalist</h2>
+            <label for="browser">Browser:</label>
+            <input list="browsers" name="browser" id="browser">
+            <datalist id="browsers">
+                <option value="Chrome">
+                <option value="Firefox">
+                <option value="Safari">
+                <option value="Edge">
+                <option value="Opera">
+            </datalist>
+        </div>
+        
+        <!-- Fieldset and Legend -->
+        <fieldset>
+            <legend>Contact Information</legend>
+            <label for="contact-name">Name:</label>
+            <input type="text" id="contact-name" name="contact-name"><br>
+            
+            <label for="contact-phone">Phone:</label>
+            <input type="tel" id="contact-phone" name="contact-phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            <small>(Format: 123-456-7890)</small>
+        </fieldset>
+        
+        <!-- Form buttons -->
+        <div>
+            <h2>Form Buttons</h2>
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+            <button type="button" onclick="showAlert()">Show Alert</button>
+        </div>
+    </form>
+    
+    <div id="formOutput"></div>
+    
+    <script>
+        // Display the current value of the slider
+        const slider = document.getElementById("satisfaction");
+        const output = document.getElementById("satisfaction-value");
+        
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+        
+        // Show an alert when the button is clicked
+        function showAlert() {
+            alert("Button clicked!");
+        }
+        
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(document.getElementById("demoForm"));
+            let formOutput = document.getElementById("formOutput");
+            
+            // Create a result string
+            let resultHTML = "<h2>Form Submission Results:</h2><ul>";
+            
+            for (let [key, value] of formData.entries()) {
+                // Skip file inputs for display
+                if (value instanceof File) {
+                    value = value.name ? value.name : "No file selected";
+                }
+                resultHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+            }
+            
+            resultHTML += "</ul>";
+            
+            // Display the results
+            formOutput.innerHTML = resultHTML;
+            
+            // You could also send the data to a server here using fetch or XMLHttpRequest
+            console.log("Form submitted with the following data:");
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+        }
+        
+        // Add event listener for form reset
+        document.getElementById("demoForm").addEventListener("reset", function() {
+            document.getElementById("formOutput").innerHTML = "";
+            document.getElementById("satisfaction-value").innerHTML = "5";
+        });
+    </script>
+</body>
+</html>

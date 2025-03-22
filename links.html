@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="tipp.png" type="image/png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Inspirational Boat</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        @font-face {
+    font-family: 'Reospec';
+    src: url('fonts/Reospec.otf') format('truetype'); /* Update path if needed */
+    font-weight: normal;
+    font-style: normal;
+}
+h1, h2 {
+    font-family: 'Reospec', sans-serif;
+}
+body {
+    font-family: 'Reospec', sans-serif; /* Use it globally */
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+    background: radial-gradient(circle, rgba(10,10,25,1) 0%, rgba(2,2,10,1) 100%);
+    color: white;
+    transition: background 0.5s, color 0.5s;
+    /* Remove overflow: hidden */
+}
+        
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+        }
+        
+        .button-group {
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 15px 20px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            color: white;
+            transition: 0.4s;
+        }
+        
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: black;
+        }
+        
+        #toggleDark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        .social-icons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+            transition: 0.3s;
+        }
+        
+        .social-icons svg:hover {
+            fill: cyan;
+            transform: scale(1.2);
+        }
+        
+        .stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+   /* background: url('https://i.imgur.com/Nz9Hkk2.png') repeat; */
+    background-size: cover;
+    opacity: 0.7; /* Ensure visibility */
+    animation: moveStars 60s linear infinite;
+}
+
+@keyframes moveStars {
+    from { background-position: 0 0; }
+    to { background-position: -500px 500px; } /* Adjusted to a noticeable drift */
+}
+        
+        .blackhole {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 70%);
+            box-shadow: 0 0 40px 10px rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+        
+        @keyframes spin {
+            from {transform: translate(-50%, -50%) rotate(0deg);}
+            to {transform: translate(-50%, -50%) rotate(360deg);}
+        }
+    #loginBtn {
+        position: absolute;
+        top: 20px;
+        right: 70px; /* Positioned left of dark mode toggle */
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(15px);
+        color: white;
+        cursor: pointer;
+        transition: 0.4s;
+    }
+
+    #loginBtn:hover {
+        background: rgba(255, 255, 255, 0.5);
+        color: black;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="blackhole"></div>
+    <div id="toggleDark">☀️</div>
+    
+    <div class="container"><br><br><br><br><br><br><br><br>
+        <h1>Welcome to<br> The Inspirational Boat</h1>
+        <div class="button-group">
+            <button class="btn" onclick="window.location.href='blackhole.html';">What is a Black Hole?</button>
+            <button class="btn">Types of Black Holes</button>
+            <button class="btn" onclick="window.location.href='games.html';">Interactive Games</button> 
+            <button class="btn">Types of Black Holes</button>
+            <button class="btn" onclick="window.location.href='index1.html';">Planets</button>
+            <button id="loginBtn" onclick="window.location.href='loginpage 2.html';">Login</button>
+
+        </div>
+    </div>
+    <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="hIQUCJn-SXLa-W4a04keB";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+        </script>
+    
+
+    
+    <script>
+        const toggleDark = document.getElementById("toggleDark");
+        let darkMode = false;
+        toggleDark.addEventListener("click", () => {
+            darkMode = !darkMode;
+            if (darkMode) {
+                document.body.style.background = "#000";
+                document.body.style.color = "#fff";
+                toggleDark.textContent = "🌙";
+            } else {
+                document.body.style.background = "radial-gradient(circle, rgba(10,10,25,1) 0%, rgba(2,2,10,1) 100%)";
+                document.body.style.color = "#fff";
+                toggleDark.textContent = "☀️";
+            }
+        });
+    </script>
+    <script>
+        function createStars() {
+            const starContainer = document.createElement("div");
+            starContainer.classList.add("stars-container");
+            document.body.appendChild(starContainer);
+    
+            for (let i = 0; i < 1000; i++) { // Number of stars
+                let star = document.createElement("div");
+                star.classList.add("star");
+    
+                // Random position
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+    
+                // Random animation duration for a twinkling effect
+                star.style.animationDuration = `${Math.random() * 2 + 1}s`;
+    
+                starContainer.appendChild(star);
+            }
+        }
+    
+        createStars();
+    </script>
+    
+    <style>
+        .stars-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px white;
+            animation: twinkle infinite alternate;
+        }
+    
+        @keyframes twinkle {
+            from { opacity: 1; }
+            to { opacity: 0.3; }
+        }
+    </style>
+    <center><video width="640" height="360" controls>
+        <source src="tipp.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video></center>
+<br><br>
+    <footer>
+<center>&copy; The Inspirational Boat - 2025. All rights reserved.</center>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="tipp.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Holes - The Inspirational Boat</title>
+    <style>
+       
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: radial-gradient(circle, rgba(10,10,25,1) 0%, rgba(2,2,10,1) 100%);
+            color: white;
+            transition: background 0.5s, color 0.5s;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Reospec', sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        .title {
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            position: relative;
+            font-family: 'Reospec', sans-serif;
+
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-family: 'Reospec', sans-serif;
+
+            opacity: 0.8;
+        }
+        
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+            animation: moveStars 60s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -500px 500px; }
+        }
+        
+        .blackhole-animation {
+            position: relative;
+            height: 400px;
+            margin: 40px 0;
+            overflow: hidden;
+        }
+        
+        .blackhole-visual {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(20,20,50,0.8) 40%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 50px 10px rgba(100, 100, 255, 0.2);
+            z-index: 2;
+        }
+        
+        .accretion-disk {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(70deg);
+            border-radius: 50%;
+            border: none;
+            background: conic-gradient(
+                rgba(255, 100, 50, 0.8),
+                rgba(255, 200, 0, 0.8),
+                rgba(255, 255, 255, 0.9),
+                rgba(100, 200, 255, 0.8),
+                rgba(50, 100, 255, 0.7),
+                rgba(255, 100, 50, 0.8)
+            );
+            filter: blur(5px);
+            box-shadow: 0 0 30px rgba(255, 150, 100, 0.6);
+            animation: rotate 20s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotateX(70deg) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotateX(70deg) rotate(360deg); }
+        }
+        
+        .light-beam {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 600px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(100, 200, 255, 0.6));
+            transform: translate(-50%, -50%) rotateZ(90deg);
+            filter: blur(20px);
+            z-index: 0;
+            animation: pulse 5s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        .nav-button {
+            display: inline-block;
+            font-family: 'Reospec', sans-serif;
+
+            margin: 10px;
+            padding: 15px 25px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            color: white;
+            transition: 0.4s;
+            text-decoration: none;
+        }
+        
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: black;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-family: 'Reospec', sans-serif;
+
+        }
+        
+        .section {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: transform 1s, opacity 1s;
+        }
+        
+        .section.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .fact-box {
+            background: rgba(50, 50, 100, 0.3);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border-left: 4px solid cyan;
+        }
+        
+        .fact-box h3 {
+            margin-bottom: 10px;
+            color: cyan;
+        }
+        
+        .image-container {
+            position: relative;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(50,50,100,0.3), rgba(100,50,100,0.3));
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .caption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            text-align: center;
+            font-family: 'Reospec', sans-serif;
+
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.4);
+            color: cyan;
+        }
+        
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        #toggleDark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 100;
+        }
+        
+        #homeBtn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            color: white;
+            cursor: pointer;
+            transition: 0.4s;
+            font-family: 'Reospec', sans-serif;
+
+            z-index: 100;
+            text-decoration: none;
+        }
+        
+        #homeBtn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: black;
+        }
+        
+        .navigation {
+            position: sticky;
+            font-family: 'Reospec', sans-serif;
+
+            top: 0;
+            background: rgba(10, 10, 25, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 15px 0;
+            z-index: 99;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+            font-family: 'Reospec', sans-serif;
+
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: cyan;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-family: 'Reospec', sans-serif;
+
+        }
+        
+        /* Star particles */
+        .stars-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px white;
+            animation: twinkle infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            from { opacity: 1; }
+            to { opacity: 0.3; }
+        }
+        
+        /* Quiz section styles */
+        .quiz-container {
+            background: rgba(20, 20, 40, 0.5);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .quiz-question {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .quiz-option {
+            padding: 15px;
+            background: rgba(50, 50, 80, 0.5);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .quiz-option:hover {
+            background: rgba(70, 70, 120, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        .quiz-option.selected {
+            background: rgba(0, 150, 150, 0.5);
+            border: 1px solid cyan;
+        }
+        
+        .quiz-feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .correct {
+            background: rgba(0, 150, 0, 0.3);
+            border: 1px solid greenyellow;
+        }
+        
+        .incorrect {
+            background: rgba(150, 0, 0, 0.3);
+            border: 1px solid red;
+        }
+        
+        .next-question {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(0, 150, 200, 0.5);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+        
+        .next-question:hover {
+            background: rgba(0, 200, 255, 0.5);
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 150, 200, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: rgba(0, 200, 255, 0.7);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars-container"></div>
+    <a href="links.html" id="homeBtn">Home</a>
+    <div id="toggleDark">☀</div>
+    
+    <header>
+        <h1 class="title">The Mysteries of Black Holes</h1>
+        <p class="subtitle">Journey into the most extreme objects in our universe</p>
+    </header>
+    
+    <div class="navigation">
+        <a href="#what-is" class="nav-link">What is a Black Hole</a>
+        <a href="#formation" class="nav-link">Formation</a>
+        <a href="#types" class="nav-link">Types</a>
+        <a href="#effects" class="nav-link">Effects</a>
+        <a href="#discoveries" class="nav-link">Discoveries</a>
+        <a href="#quiz" class="nav-link">Test Your Knowledge</a>
+    </div>
+    
+    <div class="blackhole-animation">
+        <div class="blackhole-visual"></div>
+        <div class="accretion-disk"></div>
+        <div class="light-beam"></div>
+    </div>
+    
+    <div class="container">
+        <section id="what-is" class="section">
+            <h2>What is a Black Hole?</h2>
+            <p>A black hole is a region of spacetime where gravity is so strong that nothing—no particles or even electromagnetic radiation such as light—can escape from it. The theory of general relativity predicts that a sufficiently compact mass can deform spacetime to form a black hole.</p>
+            
+            <p>The boundary of the region from which no escape is possible is called the event horizon. Although the event horizon has an enormous effect on the fate and circumstances of an object crossing it, it has no locally detectable features according to general relativity.</p>
+            
+            <div class="fact-box">
+                <h3>Amazing Fact</h3>
+                <p>If the Sun were to be compressed until it became a black hole, it would have a radius of just under 3 kilometers, compared to its current radius of about 700,000 kilometers.</p>
+            </div>
+            
+            <p>Black holes were long considered a mathematical curiosity; it was not until the 1960s that theoretical work showed they were a generic prediction of general relativity. The discovery of neutron stars by Jocelyn Bell Burnell in 1967 sparked interest in gravitationally collapsed compact objects as a possible astrophysical reality.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder">
+                    [Black Hole Structure Diagram]
+                </div>
+                <p class="caption">Diagram showing the structure of a black hole, including the event horizon, accretion disk, and ergosphere.</p>
+            </div>
+        </section>
+        
+        <section id="formation" class="section">
+            <h2>How Black Holes Form</h2>
+            <p>Black holes form when very massive stars collapse at the end of their life cycle. After a star has burned through the hydrogen in its core, it begins to burn helium and other progressively heavier elements. For stars significantly more massive than our Sun (about 8 solar masses or more), the core will eventually collapse inward on itself.</p>
+            
+            <p>This collapse is triggered when the star's internal nuclear reactions are no longer able to counteract the force of gravity. As the star collapses, it may trigger a supernova explosion, one of the most energetic events in the universe.</p>
+            
+            <div class="fact-box">
+                <h3>Stellar Evolution</h3>
+                <p>Not all stars become black holes. Stars with masses similar to our Sun will become white dwarfs, while stars between 8 and 20 solar masses typically become neutron stars. Only the most massive stars collapse to form black holes.</p>
+            </div>
+            
+            <p>During the collapse, if the core's mass is more than about 3 solar masses, no known force can stop the collapse and the core will form a black hole. The tremendous gravitational field redirects spacetime itself, essentially creating a "hole" in the fabric of space.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder">
+                    [Star Collapse Sequence]
+                </div>
+                <p class="caption">Sequence showing a massive star's collapse into a black hole through stages of stellar evolution and supernova.</p>
+            </div>
+        </section>
+        
+        <section id="types" class="section">
+            <h2>Types of Black Holes</h2>
+            <p>Scientists classify black holes into several categories based on their mass and formation mechanism:</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Mass Range</th>
+                        <th>Formation</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Stellar-mass</td>
+                        <td>3-100 solar masses</td>
+                        <td>Collapse of massive stars</td>
+                        <td>Cygnus X-1</td>
+                    </tr>
+                    <tr>
+                        <td>Intermediate-mass</td>
+                        <td>100-100,000 solar masses</td>
+                        <td>Mergers or primordial formation</td>
+                        <td>HLX-1 in ESO 243-49</td>
+                    </tr>
+                    <tr>
+                        <td>Supermassive</td>
+                        <td>Millions to billions of solar masses</td>
+                        <td>Galaxy formation processes</td>
+                        <td>Sagittarius A* (Milky Way), M87*</td>
+                    </tr>
+                    <tr>
+                        <td>Primordial (theoretical)</td>
+                        <td>Microscopic to planetary mass</td>
+                        <td>Extreme density in early universe</td>
+                        <td>Not yet confirmed</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="fact-box">
+                <h3>Supermassive Giants</h3>
+                <p>The largest known black hole, TON 618, has a mass of 66 billion times that of our Sun. If placed in our solar system, its event horizon would extend far beyond the orbit of Pluto.</p>
+            </div>
+            
+            <p>The properties of each type of black hole vary significantly. While stellar-mass black holes result from individual star collapses, the formation of supermassive black holes is still an area of active research. They may form from the merger of multiple smaller black holes, from the direct collapse of massive gas clouds in the early universe, or through other mechanisms not yet fully understood.</p>
+        </section>
+        
+        <section id="effects" class="section">
+            <h2>Effects of Black Holes</h2>
+            <p>Black holes are known for their extreme gravitational effects on surrounding space, matter, and even time itself:</p>
+            
+            <h3>Gravitational Lensing</h3>
+            <p>Black holes bend light that passes near them, creating a gravitational lensing effect. This can cause stars and galaxies behind the black hole to appear in different positions or even as multiple images. This effect was one of the first confirmations of Einstein's theory of general relativity.</p>
+            
+            <h3>Accretion Disks</h3>
+            <p>When matter falls toward a black hole, it typically forms a rotating disk called an accretion disk. The intense friction within this disk heats the matter to millions of degrees, causing it to emit X-rays and other forms of radiation. This is why, despite being "black," black holes can indirectly be some of the brightest objects in the universe.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder">
+                    [Accretion Disk Animation]
+                </div>
+                <p class="caption">Visualization of how matter spirals into a black hole, forming a superheated accretion disk.</p>
+            </div>
+            
+            <h3>Time Dilation</h3>
+            <p>One of the strangest effects of black holes is time dilation. According to Einstein's theories, time passes more slowly in stronger gravitational fields. Near a black hole's event horizon, time can be drastically slowed compared to distant observers. This means that if you could observe someone falling into a black hole (which you can't due to light being unable to escape), they would appear to slow down and freeze at the event horizon.</p>
+            
+            <div class="fact-box">
+                <h3>Spaghettification</h3>
+                <p>If you were to fall into a black hole, the difference in gravitational pull between your head and feet would become so extreme that you would be stretched out like spaghetti in a process appropriately called "spaghettification."</p>
+            </div>
+            
+            <h3>Jets and Outflows</h3>
+            <p>Some black holes, particularly when they are actively feeding, can produce powerful jets of particles that travel at nearly the speed of light. These jets can extend for thousands of light-years and have significant impacts on their host galaxies, regulating star formation and galactic evolution.</p>
+        </section>
+        
+        <section id="discoveries" class="section">
+            <h2>Recent Discoveries</h2>
+            <p>Our understanding of black holes has advanced dramatically in recent years with several groundbreaking discoveries:</p>
+            
+            <h3>First Image of a Black Hole (2019)</h3>
+            <p>In April 2019, the Event Horizon Telescope collaboration released the first-ever direct image of a black hole's shadow. The image shows the supermassive black hole at the center of galaxy M87, with its bright accretion disk surrounding the dark central region where the event horizon is located.</p>
+            
+            <div class="image-container">
+                <div class="image-placeholder">
+                    [M87 Black Hole Image]
+                </div>
+                <p class="caption">The first image of a black hole, showing M87's supermassive black hole and its surrounding accretion disk.</p>
+            </div>
+            
+            <h3>Gravitational Waves (2015 onwards)</h3>
+            <p>In 2015, the LIGO-Virgo collaboration detected gravitational waves for the first time, produced by the merger of two black holes. This opened up an entirely new way to observe black holes and has since led to dozens of detected mergers, providing insights into black hole populations and formation pathways.</p>
+            
+            <h3>Black Hole at the Center of the Milky Way</h3>
+            <p>In 2022, astronomers captured the first image of Sagittarius A* (pronounced "Sagittarius A-star"), the supermassive black hole at the center of our own Milky Way galaxy. This black hole has a mass of about 4 million times that of our Sun.</p>
+            
+            <div class="fact-box">
+                <h3>Nobel Prize</h3>
+                <p>The 2020 Nobel Prize in Physics was awarded to Roger Penrose, Reinhard Genzel, and Andrea Ghez for their work on black holes. Penrose proved that black holes are a direct consequence of Einstein's general theory of relativity, while Genzel and Ghez discovered the supermassive object at the center of our galaxy.</p>
+            </div>
+        </section>
+        
+        <section id="quiz" class="section">
+            <h2>Test Your Knowledge</h2>
+            <p>Think you understand black holes? Try this quick quiz to test your knowledge!</p>
+            
+            <div class="quiz-container">
+                <div id="quiz-content">
+                    <!-- Quiz questions will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="back-to-top">↑</div>
+    
+    <footer>
+        <p>&copy; The Inspirational Boat - 2025. All rights reserved.</p>
+        <p>This educational website is designed to inspire curiosity about our universe.</p>
+    </footer>
+    
+    <script>
+        // Create stars in the background
+        function createStars() {
+            const starContainer = document.querySelector('.stars-container');
+            
+            for (let i = 0; i < 300; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random animation duration
+                star.style.animationDuration = `${Math.random() * 3 + 1}s`;
+                
+                starContainer.appendChild(star);
+            }
+        }
+        
+        // Intersection Observer for sections
+        function setupSectionObserver() {
+            const sections = document.querySelectorAll('.section');
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+        }
+        
+        // Navigation highlighting
+        function setupNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // Back to top button
+        function setupBackToTop() {
+            const backToTopBtn = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Toggle dark mode
+        function setupDarkMode() {
+            const toggleDark = document.getElementById('toggleDark');
+            let darkMode = false;
+            
+            toggleDark.addEventListener('click', () => {
+                darkMode = !darkMode;
+                if (darkMode) {
+                    document.body.style.background = '#000';
+                    document.body.style.color = '#fff';
+                    toggleDark.textContent = '🌙';
+                } else {
+                    document.body.style.background = 'radial-gradient(circle, rgba(10,10,25,1) 0%, rgba(2,2,10,1) 100%)';
+                    document.body.style.color = '#fff';
+                    toggleDark.textContent = '☀';
+                }
+            });
+        }
+        
+        // Setup Quiz
+        function setupQuiz() {
+            const quizContent = document.getElementById('quiz-content');
+            const questions = [
+                {
+                    question: "What defines the boundary of a black hole?",
+                    options: [
+                        "The accretion disk",
+                        "The event horizon",
+                        "The singularity",
+                        "The photon sphere"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Which type of black hole is found at the center of most galaxies?",
+                    options: [
+                        "Stellar-mass black hole",
+                        "Intermediate-mass black hole",
+                        "Supermassive black hole",
+                        "Primordial black hole"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "What happens to time near a black hole's event horizon?",
+                    options: [
+                        "It speeds up",
+                        "It slows down",
+                        "It stops completely",
+                        "It reverses direction"
+                    ],
+                    correct: 1
+                }
+            ];
+            
+            let currentQuestion = 0;
+            
+            function displayQuestion(index) {
+                const question = questions[index];
+                
+                let html = `
+                    <div class="quiz-question">${index + 1}. ${question.question}</div>
+                    <div class="quiz-options">
+                `;
+                
+                question.options.forEach((option, i) => {
+                    html += `
+                        <div class="quiz-option" data-index="${i}">${option}</div>
+                    `;
+                });
+                
+                html += `
+                    </div>
+                    <div class="quiz-feedback"></div>
+                `;
+                
+                quizContent.innerHTML = html;
+                
+                // Add event listeners to options
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Clear previous selections
+                        document.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        
+                        // Mark this option as selected
+                        this.classList.add('selected');
+                        
+                        // Check if correct
+                        const selectedIndex = parseInt(this.getAttribute('data-index'));
+                        const feedback = document.querySelector('.quiz-feedback');
+                        
+                        if (selectedIndex === question.correct) {
+                            feedback.textContent = "Correct! Well done!";
+                            feedback.className = "quiz-feedback correct";
+                        } else {
+                            feedback.textContent = "Incorrect. The correct answer is: " + question.options[question.correct];
+                            feedback.className = "quiz-feedback incorrect";
+                        }
+                        
+                        feedback.style.display = "block";
+                        
+                        // Show next button if not the last question
+                        if (index < questions.length - 1) {
+                            const nextButton = document.createElement('button');
+                            nextButton.className = "next-question";
+                            nextButton.textContent = "Next Question";
+                            nextButton.addEventListener('click', () => {
+                                displayQuestion(index + 1);
+                            });
+                            
+                            feedback.appendChild(nextButton);
+                        } else {
+                            const finishButton = document.createElement('button');
+                            finishButton.className = "next-question";
+                            finishButton.textContent = "Finish Quiz";
+                            finishButton.addEventListener('click', () => {
+                                quizContent.innerHTML = `
+                                    <div class="quiz-complete">
+                                        <h3>Quiz Complete!</h3>
+                                        <p>Thanks for testing your knowledge of black holes!</p>
+                                        <button class="next-question" onclick="displayQuestion(0)">Restart Quiz</button>
+                                    </div>
+                                `;
+                            });
+                            
+                            feedback.appendChild(finishButton);
+                        }
+                    });
+                });
+            }
+            
+            // Start with the first question
+            displayQuestion(0);
+        }
+        
+        // When the DOM is loaded, initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            setupSectionObserver();
+            setupNavigation();
+            setupBackToTop();
+            setupDarkMode();
+            setupQuiz();
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
